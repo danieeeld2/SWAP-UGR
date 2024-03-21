@@ -1,0 +1,18 @@
+# Utilizamos una imagen Linux liviana
+FROM debian:bullseye-slim
+
+# Actualizamos el índice de paquetes e instalamos Nginx y PHP
+RUN apt-get update && \
+    apt-get install -y nginx php-fpm 
+
+# Copiamos el archivo index.php a la carpeta /var/www/html
+COPY web_danieeeld2/index.php /var/www/html
+
+# Copiamos el archivo de configuración de Nginx personalizado
+COPY nginxConf_danieeeld2/default.conf /etc/nginx/sites-available/default
+
+# Exponemos el puerto 80
+EXPOSE 80
+
+# Iniciamos el servicio de Nginx y PHP-FPM
+CMD service php7.4-fpm start && nginx -g 'daemon off;'

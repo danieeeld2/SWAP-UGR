@@ -1,0 +1,24 @@
+# Utilizamos una imagen linux liviana
+FROM debian:bullseye-slim
+
+# Actualizamos e instalamos apache y PHP. Además de herramientas de redes
+RUN apt-get update && apt-get install -y apache2 php libapache2-mod-php iputils-ping net-tools
+
+# Habilitamos el módulo de PHP, compresión para Apache y uso de cabeceras HTTP
+RUN a2enmod php7.4 deflate headers
+
+# Copiamos el archivo index.php a la carpeta /var/www/html
+COPY web_danieeeld2/index.php /var/www/html
+
+# Copiamos el archivo de configuración de apache a la carpeta /etc/apache2
+COPY apacheConf_danieeeld2/apache2.conf /etc/apache2/apache2.conf
+
+# Eliminamos el archivo index.html, porque sino me mostraba este por defecto
+RUN rm /var/www/html/index.html
+
+# Exponemos el puerto 80
+EXPOSE 80
+
+# Iniciamos el servicio de apache
+CMD ["apachectl", "-D", "FOREGROUND"]
+

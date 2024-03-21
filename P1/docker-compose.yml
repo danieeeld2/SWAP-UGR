@@ -1,0 +1,24 @@
+version: '1.0'
+
+services:
+  web:
+    image: danieeeld2-apache-image:p1
+    deploy:
+      replicas: 8
+    volumes:
+      - ./web_danieeeld2:/var/www/html
+    networks:
+      red_web:
+      red_servicios:
+        
+networks:
+  red_web:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.10.0/24
+  red_servicios:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.20.0/24

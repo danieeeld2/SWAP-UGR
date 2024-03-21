@@ -1,0 +1,20 @@
+# Utilizamos una imagen linux liviana
+FROM debian:bullseye-slim
+
+# Actualizamos e instalamos lighttpd y PHP
+RUN apt-get update && apt-get install -y lighttpd php7.4-cgi
+
+# Habilitamos el módulo FastCGI para PHP en lighttpd
+RUN lighty-enable-mod fastcgi-php
+
+# Copiamos el archivo index.php
+COPY web_danieeeld2/index.php /var/www/html
+
+# Copiamos el archivo de configuración de lighttpd
+COPY lighttpdConf_danieeeld2/lighttpd.conf /etc/lighttpd/lighttpd.conf
+
+# Exponemos el puerto 80
+EXPOSE 80
+
+# Iniciamos el servicio de lighttpd
+CMD ["lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
