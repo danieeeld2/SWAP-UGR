@@ -1,5 +1,6 @@
 import docker
 import requests
+from colorama import Fore, Style
 
 def get_container_ips(container_name):
     client = docker.from_env()
@@ -18,11 +19,15 @@ def check_apache(ip_address):
     try:
         response = requests.get(url)
         if response.status_code == 200:
-            print(f"Apache server is running at {ip_address}")
+            server_header = response.headers.get('Server')
+            if server_header and 'Apache' in server_header:
+                print(f"Apache server is running at {ip_address}")
+            else:
+                print(f"{Fore.RED}Server at {ip_address} is not Apache{Style.RESET_ALL}")
         else:
-            print(f"Failed to access Apache server at {ip_address}")
+            print(f"{Fore.RED}Failed to access Apache server at {ip_address}{Style.RESET_ALL}")
     except requests.ConnectionError:
-        print(f"Failed to connect to {ip_address}")
+        print(f"{Fore.RED}Failed to connect to {ip_address}{Style.RESET_ALL}")
 
 # Nombre del contenedor
 container_name = "p1-web"
