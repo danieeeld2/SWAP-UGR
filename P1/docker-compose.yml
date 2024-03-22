@@ -3,6 +3,7 @@ version: '1.0'
 services:
   web:
     image: danieeeld2-apache-image:p1
+    privileged: true
     deploy:
       replicas: 8
     volumes:
