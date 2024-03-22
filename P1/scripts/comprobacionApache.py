@@ -17,13 +17,13 @@ def get_container_ips(container_name):
 def check_apache(ip_address):
     url = f"http://{ip_address}/"
     try:
-        response = requests.get(url)
+        response = requests.get(url, timeout=5)
         if response.status_code == 200:
             server_header = response.headers.get('Server')
             if server_header and 'Apache' in server_header:
-                print(f"Apache server is running at {ip_address}")
+                print(f"{Fore.GREEN}Apache server is running at {ip_address}{Style.RESET_ALL}")
             else:
-                print(f"{Fore.RED}Server at {ip_address} is not Apache{Style.RESET_ALL}")
+                print(f"{Fore.BLUE}Server at {ip_address} is not Apache{Style.RESET_ALL}")
         else:
             print(f"{Fore.RED}Failed to access Apache server at {ip_address}{Style.RESET_ALL}")
     except requests.ConnectionError:
