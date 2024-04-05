@@ -31,6 +31,24 @@ EOF
 done
 
 cat <<EOF >>docker-compose.yml
+  balanceador-nginx:
+    image: danieeeld2-nginx-image:p2
+    ports:
+      - "80:80"
+    command: ['nginx', '-g', 'daemon off;']
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.50
+    depends_on:
+EOF
+
+for ((i=1; i<=$num_instances; i++)); do
+    echo "      - web$i" >>docker-compose.yml
+done
+
+cat <<EOF >>docker-compose.yml
 
 networks:
   red_web:

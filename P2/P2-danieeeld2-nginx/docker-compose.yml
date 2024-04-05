@@ -97,6 +97,25 @@ services:
       red_servicios:
         ipv4_address: 192.168.20.9
 
+  balanceador-nginx:
+    image: danieeeld2-nginx-image:p2
+    ports:
+      - "80:80"
+    command: ['nginx', '-g', 'daemon off;']
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.50
+    depends_on:
+      - web1
+      - web2
+      - web3
+      - web4
+      - web5
+      - web6
+      - web7
+      - web8
 
 networks:
   red_web:
