@@ -1,0 +1,111 @@
+version: '2.0'
+
+services:
+  web1:
+    image: danieeeld2-apache-image:p2
+    container_name: web1
+    privileged: true
+    volumes:
+      - ./web_danieeeld2:/var/www/html
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.2
+      red_servicios:
+        ipv4_address: 192.168.20.2
+
+  web2:
+    image: danieeeld2-apache-image:p2
+    container_name: web2
+    privileged: true
+    volumes:
+      - ./web_danieeeld2:/var/www/html
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.3
+      red_servicios:
+        ipv4_address: 192.168.20.3
+
+  web3:
+    image: danieeeld2-apache-image:p2
+    container_name: web3
+    privileged: true
+    volumes:
+      - ./web_danieeeld2:/var/www/html
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.4
+      red_servicios:
+        ipv4_address: 192.168.20.4
+
+  web4:
+    image: danieeeld2-apache-image:p2
+    container_name: web4
+    privileged: true
+    volumes:
+      - ./web_danieeeld2:/var/www/html
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.5
+      red_servicios:
+        ipv4_address: 192.168.20.5
+
+  web5:
+    image: danieeeld2-apache-image:p2
+    container_name: web5
+    privileged: true
+    volumes:
+      - ./web_danieeeld2:/var/www/html
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.6
+      red_servicios:
+        ipv4_address: 192.168.20.6
+
+  web6:
+    image: danieeeld2-apache-image:p2
+    container_name: web6
+    privileged: true
+    volumes:
+      - ./web_danieeeld2:/var/www/html
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.7
+      red_servicios:
+        ipv4_address: 192.168.20.7
+
+  web7:
+    image: danieeeld2-apache-image:p2
+    container_name: web7
+    privileged: true
+    volumes:
+      - ./web_danieeeld2:/var/www/html
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.8
+      red_servicios:
+        ipv4_address: 192.168.20.8
+
+  web8:
+    image: danieeeld2-apache-image:p2
+    container_name: web8
+    privileged: true
+    volumes:
+      - ./web_danieeeld2:/var/www/html
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.9
+      red_servicios:
+        ipv4_address: 192.168.20.9
+
+
+networks:
+  red_web:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.10.0/24
+  red_servicios:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.20.0/24
