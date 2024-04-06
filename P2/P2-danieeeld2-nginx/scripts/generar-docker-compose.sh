@@ -33,6 +33,7 @@ done
 cat <<EOF >>docker-compose.yml
   balanceador-nginx:
     image: danieeeld2-nginx-image:p2
+    container_name: balanceador-nginx
     ports:
       - "80:80"
     command: ['nginx', '-g', 'daemon off;']
