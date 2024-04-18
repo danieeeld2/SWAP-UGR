@@ -1,0 +1,25 @@
+
+[servers.sample]
+bind = "0.0.0.0:80"
+protocol = "tcp" 
+balance = "roundrobin"
+
+max_connections = 10000
+client_idle_timeout = "10m"
+backend_idle_timeout = "10m"
+backend_connection_timeout = "20s"
+
+    [servers.sample.discovery]
+    kind = "static"
+    static_list = [
+      "192.168.10.2:80",
+      "192.168.10.3:80"
+    ]
+
+    [servers.sample.healthcheck]
+    fails = 1                      
+    passes = 1
+    interval = "2s"   
+    timeout="1s"             
+    kind = "ping"
+    ping_timeout_duration = "500ms"
