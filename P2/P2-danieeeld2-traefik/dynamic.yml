@@ -1,0 +1,56 @@
+http:
+  routers:
+    to-app:
+      rule: "Path(`/`)"
+      service: app
+
+  services:
+    app:
+      weighted:
+        services:
+        - name: web1
+          weight: 1
+        - name: web2
+          weight: 1
+        - name: web3
+          weight: 1
+
+    web1:
+      loadBalancer:
+        servers:
+        - url: "http://192.168.10.2:80/"
+
+    web2:
+      loadBalancer:
+        servers:
+        - url: "http://192.168.10.3:80/"
+
+    web3:
+      loadBalancer:
+        servers:
+        - url: "http://192.168.10.4:80/"
+
+    web4:
+      loadBalancer:
+        servers:
+        - url: "http://192.168.10.5:80/"
+    
+    web5:
+      loadBalancer:
+        servers:
+        - url: "http://192.168.10.6:80/"
+
+    web6:
+      loadBalancer:
+        servers:
+        - url: "http://192.168.10.7:80/"
+
+    web7:
+      loadBalancer:
+        servers:
+        - url: "http://192.168.10.8:80/"
+
+    web8:
+      loadBalancer:
+        servers:
+        - url: "http://192.168.10.9:80/"

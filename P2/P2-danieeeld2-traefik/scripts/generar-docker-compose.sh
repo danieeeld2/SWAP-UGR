@@ -24,6 +24,8 @@ for ((i=1; i<=$num_instances; i++)); do
     networks:
       red_web:
         ipv4_address: 192.168.10.$((i+1))
+        aliases:
+            - web$i
       red_servicios:
         ipv4_address: 192.168.20.$((i+1))
 
@@ -31,13 +33,15 @@ EOF
 done
 
 cat <<EOF >>docker-compose.yml
-  balanceador-gobetween:
-    image: yyyar/gobetween:latest
-    container_name: balanceador-gobetween
+  balanceador-traefik:
+    image: traefik:latest
+    container_name: balanceador-traefik
     ports:
       - "80:80"
+      - "8080:8080"
     volumes:
-      - ./gobetween.toml:/etc/gobetween/conf/gobetween.toml
+      - ./traefik.yml:/etc/traefik/traefik.yml
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       red_web:
         ipv4_address: 192.168.10.50

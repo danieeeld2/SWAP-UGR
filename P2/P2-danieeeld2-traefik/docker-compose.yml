@@ -10,6 +10,8 @@ services:
     networks:
       red_web:
         ipv4_address: 192.168.10.2
+        aliases:
+            - web1
       red_servicios:
         ipv4_address: 192.168.20.2
 
@@ -22,6 +24,8 @@ services:
     networks:
       red_web:
         ipv4_address: 192.168.10.3
+        aliases:
+            - web2
       red_servicios:
         ipv4_address: 192.168.20.3
 
@@ -34,6 +38,8 @@ services:
     networks:
       red_web:
         ipv4_address: 192.168.10.4
+        aliases:
+            - web3
       red_servicios:
         ipv4_address: 192.168.20.4
 
@@ -46,6 +52,8 @@ services:
     networks:
       red_web:
         ipv4_address: 192.168.10.5
+        aliases:
+            - web4
       red_servicios:
         ipv4_address: 192.168.20.5
 
@@ -58,6 +66,8 @@ services:
     networks:
       red_web:
         ipv4_address: 192.168.10.6
+        aliases:
+            - web5
       red_servicios:
         ipv4_address: 192.168.20.6
 
@@ -70,6 +80,8 @@ services:
     networks:
       red_web:
         ipv4_address: 192.168.10.7
+        aliases:
+            - web6
       red_servicios:
         ipv4_address: 192.168.20.7
 
@@ -82,6 +94,8 @@ services:
     networks:
       red_web:
         ipv4_address: 192.168.10.8
+        aliases:
+            - web7
       red_servicios:
         ipv4_address: 192.168.20.8
 
@@ -94,16 +108,21 @@ services:
     networks:
       red_web:
         ipv4_address: 192.168.10.9
+        aliases:
+            - web8
       red_servicios:
         ipv4_address: 192.168.20.9
 
-  balanceador-gobetween:
-    image: yyyar/gobetween:latest
-    container_name: balanceador-gobetween
+  balanceador-traefik:
+    image: traefik:latest
+    container_name: balanceador-traefik
     ports:
       - "80:80"
+      - "8080:8080"
     volumes:
-      - ./gobetween.toml:/etc/gobetween/conf/gobetween.toml
+      - ./traefik.yml:/etc/traefik/traefik.yml
+      - ./dynamic.yml:/etc/traefik/conf.d/dynamic.yml
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       red_web:
         ipv4_address: 192.168.10.50
