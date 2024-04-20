@@ -41,6 +41,7 @@ cat <<EOF >>docker-compose.yml
       - "8080:8080"
     volumes:
       - ./traefik.yml:/etc/traefik/traefik.yml
+      - ./dynamic.yml:/etc/traefik/conf.d/dynamic.yml
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       red_web:
