@@ -6,6 +6,7 @@ if [ "$#" -ne 1 ]; then
 fi
 
 num_instances=$1
+echo "$num_instances" > instancias.env
 
 cat <<EOF >docker-compose.yml
 version: '2.0'
@@ -51,6 +52,20 @@ for ((i=1; i<=$num_instances; i++)); do
 done
 
 cat <<EOF >>docker-compose.yml
+
+  cAdvisor:
+      image: gcr.io/cadvisor/cadvisor:v0.49.1
+      container_name: cAdvisor
+      privileged: true
+      ports:
+        - "8080:8080"
+      volumes:
+        - /:/rootfs:ro
+        - /var/run:/var/run:ro
+        - /sys:/sys:ro
+        - /var/lib/docker/:/var/lib/docker:ro
+      devices:
+        - /dev/kmsg
 
 networks:
   red_web:
