@@ -27,7 +27,7 @@ def stop_highest_webX():
         command = "./scripts/generar-docker-compose.sh " + str(numero_contenedor -1)
         subprocess.run(command, shell=True)
         container_to_stop.stop()
-        command = "docker-compose rm web" + str(numero_contenedor)
+        command = "docker rm web" + str(numero_contenedor)
         print(f'Se ha detenido el contenedor {container_to_stop.name}')
         return True
     
