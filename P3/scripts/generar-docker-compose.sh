@@ -23,6 +23,8 @@ for ((i=1; i<=$num_instances; i++)); do
     volumes:
       - ./web_danieeeld2:/var/www/html
       - ./P3-danieeeld2-certificados:/etc/apache2/ssl
+      # - ./P3-danieeeld2-certificados/certificado_subCA.crt:/etc/apache2/ssl/certificado_danieeeld2.crt
+      # - ./P3-danieeeld2-certificados/certificado_subCA.key:/etc/apache2/ssl/certificado_danieeeld2.key
       - ./P3-danieeeld2-apache/danieeeld2-apache-ssl.conf:/etc/apache2/sites-available/danieeeld2-apache-ssl.conf
     networks:
       red_web:
@@ -44,6 +46,8 @@ cat <<EOF >>docker-compose.yml
     volumes:
       - ./P3-danieeeld2-nginx/danieeeld2-nginx-ssl.conf:/etc/nginx/nginx.conf
       - ./P3-danieeeld2-certificados:/etc/nginx/ssl
+      # - ./P3-danieeeld2-certificados/certificado_subCA.crt:/etc/nginx/ssl/certificado_danieeeld2.crt
+      # - ./P3-danieeeld2-certificados/certificado_subCA.key:/etc/nginx/ssl/certificado_danieeeld2.key
     networks:
       red_web:
         ipv4_address: 192.168.10.50
