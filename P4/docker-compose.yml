@@ -1,0 +1,175 @@
+version: '4.0'
+
+services:
+  web1:
+    image: danieeeld2-apache-image:p4
+    container_name: web1
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./web_danieeeld2:/var/www/html
+      - ./P4-danieeeld2-certificados:/etc/apache2/ssl
+      # - ./P4-danieeeld2-certificados/certificado_subCA.crt:/etc/apache2/ssl/certificado_danieeeld2.crt
+      # - ./P4-danieeeld2-certificados/certificado_subCA.key:/etc/apache2/ssl/certificado_danieeeld2.key
+      - ./P4-danieeeld2-apache/danieeeld2-apache-ssl.conf:/etc/apache2/sites-available/danieeeld2-apache-ssl.conf
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.2
+      red_servicios:
+        ipv4_address: 192.168.20.2
+
+  web2:
+    image: danieeeld2-apache-image:p4
+    container_name: web2
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./web_danieeeld2:/var/www/html
+      - ./P4-danieeeld2-certificados:/etc/apache2/ssl
+      # - ./P4-danieeeld2-certificados/certificado_subCA.crt:/etc/apache2/ssl/certificado_danieeeld2.crt
+      # - ./P4-danieeeld2-certificados/certificado_subCA.key:/etc/apache2/ssl/certificado_danieeeld2.key
+      - ./P4-danieeeld2-apache/danieeeld2-apache-ssl.conf:/etc/apache2/sites-available/danieeeld2-apache-ssl.conf
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.3
+      red_servicios:
+        ipv4_address: 192.168.20.3
+
+  web3:
+    image: danieeeld2-apache-image:p4
+    container_name: web3
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./web_danieeeld2:/var/www/html
+      - ./P4-danieeeld2-certificados:/etc/apache2/ssl
+      # - ./P4-danieeeld2-certificados/certificado_subCA.crt:/etc/apache2/ssl/certificado_danieeeld2.crt
+      # - ./P4-danieeeld2-certificados/certificado_subCA.key:/etc/apache2/ssl/certificado_danieeeld2.key
+      - ./P4-danieeeld2-apache/danieeeld2-apache-ssl.conf:/etc/apache2/sites-available/danieeeld2-apache-ssl.conf
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.4
+      red_servicios:
+        ipv4_address: 192.168.20.4
+
+  web4:
+    image: danieeeld2-apache-image:p4
+    container_name: web4
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./web_danieeeld2:/var/www/html
+      - ./P4-danieeeld2-certificados:/etc/apache2/ssl
+      # - ./P4-danieeeld2-certificados/certificado_subCA.crt:/etc/apache2/ssl/certificado_danieeeld2.crt
+      # - ./P4-danieeeld2-certificados/certificado_subCA.key:/etc/apache2/ssl/certificado_danieeeld2.key
+      - ./P4-danieeeld2-apache/danieeeld2-apache-ssl.conf:/etc/apache2/sites-available/danieeeld2-apache-ssl.conf
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.5
+      red_servicios:
+        ipv4_address: 192.168.20.5
+
+  web5:
+    image: danieeeld2-apache-image:p4
+    container_name: web5
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./web_danieeeld2:/var/www/html
+      - ./P4-danieeeld2-certificados:/etc/apache2/ssl
+      # - ./P4-danieeeld2-certificados/certificado_subCA.crt:/etc/apache2/ssl/certificado_danieeeld2.crt
+      # - ./P4-danieeeld2-certificados/certificado_subCA.key:/etc/apache2/ssl/certificado_danieeeld2.key
+      - ./P4-danieeeld2-apache/danieeeld2-apache-ssl.conf:/etc/apache2/sites-available/danieeeld2-apache-ssl.conf
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.6
+      red_servicios:
+        ipv4_address: 192.168.20.6
+
+  web6:
+    image: danieeeld2-apache-image:p4
+    container_name: web6
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./web_danieeeld2:/var/www/html
+      - ./P4-danieeeld2-certificados:/etc/apache2/ssl
+      # - ./P4-danieeeld2-certificados/certificado_subCA.crt:/etc/apache2/ssl/certificado_danieeeld2.crt
+      # - ./P4-danieeeld2-certificados/certificado_subCA.key:/etc/apache2/ssl/certificado_danieeeld2.key
+      - ./P4-danieeeld2-apache/danieeeld2-apache-ssl.conf:/etc/apache2/sites-available/danieeeld2-apache-ssl.conf
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.7
+      red_servicios:
+        ipv4_address: 192.168.20.7
+
+  web7:
+    image: danieeeld2-apache-image:p4
+    container_name: web7
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./web_danieeeld2:/var/www/html
+      - ./P4-danieeeld2-certificados:/etc/apache2/ssl
+      # - ./P4-danieeeld2-certificados/certificado_subCA.crt:/etc/apache2/ssl/certificado_danieeeld2.crt
+      # - ./P4-danieeeld2-certificados/certificado_subCA.key:/etc/apache2/ssl/certificado_danieeeld2.key
+      - ./P4-danieeeld2-apache/danieeeld2-apache-ssl.conf:/etc/apache2/sites-available/danieeeld2-apache-ssl.conf
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.8
+      red_servicios:
+        ipv4_address: 192.168.20.8
+
+  web8:
+    image: danieeeld2-apache-image:p4
+    container_name: web8
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./web_danieeeld2:/var/www/html
+      - ./P4-danieeeld2-certificados:/etc/apache2/ssl
+      # - ./P4-danieeeld2-certificados/certificado_subCA.crt:/etc/apache2/ssl/certificado_danieeeld2.crt
+      # - ./P4-danieeeld2-certificados/certificado_subCA.key:/etc/apache2/ssl/certificado_danieeeld2.key
+      - ./P4-danieeeld2-apache/danieeeld2-apache-ssl.conf:/etc/apache2/sites-available/danieeeld2-apache-ssl.conf
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.9
+      red_servicios:
+        ipv4_address: 192.168.20.9
+
+  balanceador-nginx:
+    image: danieeeld2-nginx-image:p4
+    container_name: balanceador-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    command: ['nginx', '-g', 'daemon off;']
+    volumes:
+      - ./P4-danieeeld2-nginx/danieeeld2-nginx-ssl.conf:/etc/nginx/nginx.conf
+      - ./P4-danieeeld2-certificados:/etc/nginx/ssl
+      # - ./P4-danieeeld2-certificados/certificado_subCA.crt:/etc/nginx/ssl/certificado_danieeeld2.crt
+      # - ./P4-danieeeld2-certificados/certificado_subCA.key:/etc/nginx/ssl/certificado_danieeeld2.key
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.50
+    depends_on:
+      - web1
+      - web2
+      - web3
+      - web4
+      - web5
+      - web6
+      - web7
+      - web8
+
+networks:
+  red_web:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.10.0/24
+  red_servicios:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.20.0/24

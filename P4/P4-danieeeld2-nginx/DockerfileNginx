@@ -1,0 +1,7 @@
+FROM nginx:latest
+
+# Crear directorio para SSL
+RUN mkdir -p /etc/nginx/ssl
+
+# Exponer puerto 443
+EXPOSE 443

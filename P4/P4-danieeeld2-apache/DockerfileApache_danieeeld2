@@ -1,0 +1,48 @@
+# Utilizamos una imagen linux liviana
+FROM debian:bullseye-slim
+
+# Actualizamos e instalamos apache y PHP. Además de herramientas de redes e IPTABLES
+RUN apt-get update && apt-get install -y apache2 php libapache2-mod-php iputils-ping net-tools iptables
+
+# Habilitamos el módulo de PHP, compresión para Apache y uso de cabeceras HTTP
+RUN a2enmod php7.4 deflate headers
+
+# Intalar módulos SSL y crear directorio para certificados
+RUN a2enmod ssl \
+    && mkdir /etc/apache2/ssl
+
+# Copiamos el archivo index.php a la carpeta /var/www/html
+COPY web_danieeeld2/index.php /var/www/html
+
+# Copiamos los archivos de certificado y clave privada
+COPY P4-danieeeld2-certificados/certificado_danieeeld2.key /etc/apache2/ssl/certificado_danieeeld2.key
+COPY P4-danieeeld2-certificados/certificado_danieeeld2.crt /etc/apache2/ssl/certificado_danieeeld2.crt
+
+# Cambiamos los permisos de los archivos de certificado
+RUN chmod 600 /etc/apache2/ssl/certificado_danieeeld2.crt
+
+# Eliminamos el archivo index.html, porque sino me mostraba este por defecto
+RUN rm /var/www/html/index.html
+
+# Copiamos los archivos de configuración de apache
+COPY P4-danieeeld2-apache/danieeeld2-apache-ssl.conf /etc/apache2/sites-available/danieeeld2-apache-ssl.conf
+
+# Habilitamos el sitio
+RUN a2ensite danieeeld2-apache-ssl
+
+# Copiamos el script de entrada entrypoint y script de reglas iptables
+COPY P4-danieeeld2-apache/entrypoint.sh /entrypoint.sh
+COPY P4-danieeeld2-apache/P4-danieeeld2-iptables-web/danieeeld2-iptables-web.sh /danieeeld2-iptables-web.sh
+
+# Damos permisos de ejecución a las scripts
+RUN chmod +x /entrypoint.sh /danieeeld2-iptables-web.sh
+
+# Exponemos el puerto 80 de HTTP
+EXPOSE 80
+
+# Exponemos el puerto 443 de HTTPS
+EXPOSE 443
+
+# Iniciamos el servicio de apache
+ENTRYPOINT ["/entrypoint.sh", "apachectl", "-D", "FOREGROUND"]
+
