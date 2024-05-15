@@ -39,6 +39,8 @@ cat <<EOF >>docker-compose.yml
   balanceador-nginx:
     image: danieeeld2-nginx-image:p4
     container_name: balanceador-nginx
+    cap_add:
+      - NET_ADMIN
     ports:
       - "80:80"
       - "443:443"
