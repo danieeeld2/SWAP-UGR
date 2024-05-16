@@ -25,15 +25,16 @@ iptables -t mangle -A PREROUTING -p tcp --tcp-flags ALL SYN,FIN,PSH,URG -j DROP
 iptables -t mangle -A PREROUTING -p tcp --tcp-flags ALL SYN,RST,ACK,FIN,URG -j DROP
 
 # Bloquear tráfico por cantidad de conexiones
-iptables -A INPUT -p tcp -m connlimit --connlimit-above 85 -j REJECT --reject-with tcp-reset
+iptables -A INPUT -p tcp -m connlimit --connlimit-above 10 -j REJECT --reject-with tcp-reset
 
 # Bloquear tráfico por cantidad de conexiones por unidad de tiempo
-iptables -A INPUT -p tcp -m conntrack --ctstate NEW -m limit --limit 50/s --limit-burst 18 -j ACCEPT 
+iptables -A INPUT -p tcp -m conntrack --ctstate NEW -m limit --limit 50/s --limit-burst 2 -j ACCEPT 
 iptables -A INPUT -p tcp -m conntrack --ctstate NEW -j DROP
 
 # Bloquear paquetes fragmentados
 iptables -t mangle -A PREROUTING -f -j DROP
 
+# Bloquear paquetes con dirección IP de origen spoofeada
 iptables -t raw -A PREROUTING -p tcp -m tcp --syn -j ACCEPT
 iptables -A INPUT -p tcp -m tcp -m conntrack --ctstate INVALID,UNTRACKED -j ACCEPT 
 iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
