@@ -1,0 +1,16 @@
+FROM nginx:latest
+
+# Crear directorio para SSL
+RUN mkdir -p /etc/nginx/ssl
+
+# Instalar iptables
+RUN apt-get update && apt-get install -y iptables
+
+# Copiamos la script de reglas iptabñes
+COPY P4-danieeeld2-nginx/P4-danieeeld2-iptables-nginx/danieeeld2-iptables-nginx.sh docker-entrypoint.d/danieeeld2-iptables-nginx.sh
+
+# Damos permisos de ejecución a las scripts
+RUN chmod +x docker-entrypoint.d/danieeeld2-iptables-nginx.sh
+
+# Exponer puerto 443
+EXPOSE 443

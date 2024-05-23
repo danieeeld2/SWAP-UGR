@@ -1,0 +1,15 @@
+services:
+  apache-benchmark-P5:
+    build:
+      context: .
+      dockerfile: DockerfileAB
+    image: danieeeld2-ab-image:P5
+    container_name: apache-benchmark-P5
+    command: ["ab", "-k" , "-n", "10000", "-c", "100", "https://192.168.10.50:443/"]
+    networks:
+      p5-granjaweb_red_web:
+        ipv4_address: 192.168.10.60
+
+networks:
+  p5-granjaweb_red_web:
+    external: true
