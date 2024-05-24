@@ -122,13 +122,12 @@ $resultado = $conexion->query("SELECT * FROM usuarios");
             echo "<td>" . $fila['apellidos'] . "</td>";
             echo "</tr>";
         }
-        
+        echo "<tr><td colspan='2'>Dirección IP del servidor: " . $_SERVER['SERVER_ADDR'] . "</td></tr>";
+        if(isset($salida) && $salida != "") {
+            echo "<tr><td colspan='2'>$salida</td></tr>";
+        }
         echo "</table>";
     ?>
-
-    <footer>
-        <?php echo $salida; ?>
-    </footer>
 
 </body>
 

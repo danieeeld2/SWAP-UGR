@@ -1,6 +1,9 @@
 services:
   master-danieeeld2:
-    image: locustio/locust
+    build: 
+      context: .
+      dockerfile: DockerfileLocust
+    image: danieeeld2-locust-image:P5
     ports:
       - "8089:8089"
     volumes:
@@ -9,9 +12,14 @@ services:
     networks:
       p5-granjaweb_red_web:
         ipv4_address: 192.168.10.70
+      p5-granjaweb_red_servicios:
+        ipv4_address: 192.168.20.70
 
   worker-danieeeld2:
-    image: locustio/locust
+    build: 
+      context: .
+      dockerfile: DockerfileLocust
+    image: danieeeld2-locust-image:P5
     volumes:
       - ./:/mnt/locust
     command: -f /mnt/locust/locustfile.py --worker --master-host=master-danieeeld2
@@ -21,7 +29,10 @@ services:
       replicas: 5
     networks:
       p5-granjaweb_red_web:
+      p5-granjaweb_red_servicios:
 
 networks:
   p5-granjaweb_red_web:
+    external: true
+  p5-granjaweb_red_servicios:
     external: true
