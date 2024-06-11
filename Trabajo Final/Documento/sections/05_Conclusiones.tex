@@ -1,0 +1,23 @@
+\section{Conclusiones}
+
+
+En este trabajo, hemos investigado diversas formas de realizar ataques de \textbf{cookie poisoning}, una amenaza que puede parecer poco conocida a priori. Hemos identificado las vulnerabilidades más comunes y las técnicas más efectivas para prevenirlos y detectarlos. A continuación, vamos a presentar las conclusiones más claras que encontramos sobre este y algunas posibles mejoras en la protección frente a estos ataques.
+
+
+\subsection*{Vulnerabilidades más comunes y prueba práctica expuesta}
+
+Como hemos visto anteriormente, las vulnerabilidades más comunes que permiten el \textit{cookie poisoning} incluyen la falta de validación adecuada de las cookies y la insuficiente implementación de medidas de seguridad, como el uso de cookies HttpOnly y Secure o la falta de cifrado de estas. 
+
+La prueba práctica realizada con \textit{Burp Suite} demuestra claramente cómo es posible modificar el valor de una cookie para obtener acceso a áreas restringidas de una aplicación web. Este pequeño experimento destaca la necesidad de una validación robusta y continua de la integridad de las cookies.
+
+\subsection*{Impacto de estos ataques y recomendaciones finales}
+
+Los ataques expuestos a grandes empresas, como a Yahoo y LastPass, muestran la gravedad y el impacto de estos ataques y resaltan la necesidad de implementar medidas de seguridad para proteger la privacidad y la integridad de los datos de las aplicaciones.
+
+Como recomendación para evitar ataques de \textbf{cookie poisoning}, toda aplicación debería implementar varias medidas de seguridad esenciales. Entre ellas, el cifrado adecuado de las cookies, el uso de la bandera \textit{HttpOnly} y \textit{Secure}, y la validación obligatoria de las cookies en el servidor.
+
+Además, estar al tanto de los últimos desarrollos, como las \textbf{Device Bound Session Credentials (DBSC)} de \textit{Google}, puede otorgar una capa adicional de protección contra el robo de cookies de sesión y el acceso no autorizado a cuentas de usuario.
+
+
+En conclusión, este tipo de ataques es una amenaza importante para la seguridad de las aplicaciones web, pero con la implementación de las medidas adecuadas y la realización de investigaciones continuas, es posible mitigar estos riesgos y proteger de manera más segura la información de los usuarios.
+
